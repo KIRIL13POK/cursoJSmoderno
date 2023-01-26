@@ -14,19 +14,20 @@ document.addEventListener('DOMContentLoaded', function(){
     // -->Pero para hacer nuestro código más reutilizable, podemos reemplazar un callback por una función. //Tenemos una sola función que se va a encargar de ello en lugar de tener código repetitivo
     
     function validar(evt){
-        console.log(evt.target.value);
+        const tipoCampo = evt.target.id
+        //console.log(evt.target.id)//para  encontrar información sobre el elemento que dispara ese evento.
         if(evt.target.value.trim() === ''){
-            mostrarAlerta();   
+            mostrarAlerta(`El campo ${tipoCampo.toUpperCase ()} es obligatorio`);// de esa forma se va a inyectar dinámicamente el ID de cada uno de los campos   
         }else{
             console.log('hay algo');
         }
         
     }
    
-    function mostrarAlerta(){
+    function mostrarAlerta(mensaje){
        // Generar alerta en HTML
        const error = document.createElement('P');
-       error.textContent = 'Hubo un error...'
+       error.textContent = mensaje
        error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');// para agregarle clases 
 
        //Inyectar el error al formulario
