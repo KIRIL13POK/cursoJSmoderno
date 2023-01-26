@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function(){
     
     const inputEmail = document.querySelector('#email'),
           inputAsunto = document.querySelector('#asunto'),
-          textAreaMensaje = document.querySelector('#mensaje');
-   
+          textAreaMensaje = document.querySelector('#mensaje'),
+          formulario = document.querySelector('#formulario');
 
     //Asignar eventos
     inputEmail.addEventListener('blur', validar);
@@ -27,8 +27,11 @@ document.addEventListener('DOMContentLoaded', function(){
        // Generar alerta en HTML
        const error = document.createElement('P');
        error.textContent = 'Hubo un error...'
-      console.log(error);
-    
+       error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');// para agregarle clases 
+
+       //Inyectar el error al formulario
+       formulario.appendChild(error);//Agregar un nuevo elemento a lo ya existente.
+      
        
     }
 
