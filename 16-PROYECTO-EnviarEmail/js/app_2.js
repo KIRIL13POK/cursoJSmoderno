@@ -12,26 +12,21 @@ document.addEventListener('DOMContentLoaded', function () {
     textAreaMensaje.addEventListener('blur', validar);
 
     function validar(evt) {
-        console.log(evt.target.parentElement);
-
 
         const tipoCampo = evt.target.id
         if (evt.target.value.trim() === '') {
             mostrarAlerta(`El campo ${tipoCampo.toUpperCase()} es obligatorio`, evt.target.parentElement);
-        } else {
-            console.log('hay algo');
+            return;//--> lo que hace es detener la ejecución del código.
         }
+
+
+        limpiarAlerta(evt.target.parentElement);//-->1.1-Tenemos que pasarle la referencia para que sepa qué alerta es la que tiene que eliminar.
+
 
     }
 
     function mostrarAlerta(mensaje, referencia) {
-        //Compruenba si ya existe una alerta
-        const alerta = referencia.querySelector('.bg-red-600');//1- le estamos diciendo que únicamente en los elementos de este div busque essta clase
-        if(alerta){
-            alerta.remove();
-        }//2-no me genera múltiples alertas-->entonces lo elimine
-
-
+        limpiarAlerta(referencia);
 
         //Generar alerta en HTML
         const error = document.createElement('P');
@@ -43,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
+    //lo que estamos haciendo aquí es tener una función aparte, dividir un poco nuestro código
+    function limpiarAlerta(referencia) {//-->1Tenemos que pasarle la referencia para que sepa qué alerta es la que tiene que eliminar
+        //comprueba si ya existe una alerta
+        const alerta = referencia.querySelector('.bg-red-600');
+        if (alerta) {//-->2-tenemos que comprobar que exista una alerta.
+            alerta.remove();//-->3- y va a limpiar esa alerta en lugar de limpiar otras alertas.
+        }
+    }
+
+
 
 
 
