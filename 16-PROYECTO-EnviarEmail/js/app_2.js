@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    //Este objeto va a contener cada uno de estos valores, es decir, email, asunto y mensaje.
+    const email = {
+        email: '',
+        asunto: '',
+        mensaje: ''
+    }
+    
 
 
     const inputEmail = document.querySelector('#email'),
@@ -19,13 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return;//--> lo que hace es detener la ejecución del código.
         }
 
-        //2-->
+        
         if(  evt.target.id === 'email' && !validarEmail(evt.target.value)){// estas dos condiciones se tienen que cumplir.
             mostrarAlerta(`El ${tipoCampo.toUpperCase()} no es valido`, evt.target.parentElement )
             return;
         }
          
         limpiarAlerta(evt.target.parentElement);
+
+        //Asignar los valores --> Si el código llega a ejecutarse hasta aqui, significa que hemos pasado las validaciones.
+        email[evt.target.name] = evt.target.value.trim().toLowerCase();
+
+        //Comprobar el objeto de email
+        comprobarEmail()
+        
 
 
     }
@@ -57,6 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return resultado;
 
     }
+
+     function comprobarEmail(){
+        //console.log(Object.values(email));//--> retorna un array con valores.
+        //podemos utilizar un método de arreglos --> 
+        console.log(Object.values(email).includes(''));//--> verificamos si al menos uno de esos valores contiene un string vacío.Va a retornar true o false
+
+
+     }
     
 
 
