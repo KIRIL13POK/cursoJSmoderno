@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;//--> lo que hace es detener la ejecución del código.
         }
 
-
-        limpiarAlerta(evt.target.parentElement);//-->1.1-Tenemos que pasarle la referencia para que sepa qué alerta es la que tiene que eliminar.
+        //2-->
+        if(  evt.target.id === 'email' && !validarEmail(evt.target.value)){// estas dos condiciones se tienen que cumplir.
+            mostrarAlerta(`El ${tipoCampo.toUpperCase()} no es valido`, evt.target.parentElement )
+            return;
+        }
+         
+        limpiarAlerta(evt.target.parentElement);
 
 
     }
@@ -38,14 +43,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
-    //lo que estamos haciendo aquí es tener una función aparte, dividir un poco nuestro código
-    function limpiarAlerta(referencia) {//-->1Tenemos que pasarle la referencia para que sepa qué alerta es la que tiene que eliminar
-        //comprueba si ya existe una alerta
+   
+    function limpiarAlerta(referencia) {
         const alerta = referencia.querySelector('.bg-red-600');
-        if (alerta) {//-->2-tenemos que comprobar que exista una alerta.
-            alerta.remove();//-->3- y va a limpiar esa alerta en lugar de limpiar otras alertas.
+        if (alerta) {
+            alerta.remove();
         }
     }
+
+    function validarEmail(email){
+        const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ //--> 1- expresión regular para emails en JavaScript 
+        const resultado = regex.test(email);
+        return resultado;
+
+    }
+    
 
 
 
