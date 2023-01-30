@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    //Este objeto va a contener cada uno de estos valores, es decir, email, asunto y mensaje.
+    
     const email = {
         email: '',
         asunto: '',
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         inputAsunto = document.querySelector('#asunto'),
         textAreaMensaje = document.querySelector('#mensaje'),
         formulario = document.querySelector('#formulario'),
-        btnSubmit = document.querySelector('#formulario button[type="submit"]')//-->Es una mezcla aquí de un tag o etiqueta y también el selector de atributo para seleccionar
+        btnSubmit = document.querySelector('#formulario button[type="submit"]')
 
 
     //Asignar eventos
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarAlerta(`El campo ${tipoCampo.toUpperCase()} es obligatorio`, evt.target.parentElement);
             email[evt.target.name] = '';
             comprobarEmail();
-            return;//--> lo que hace es detener la ejecución del código.
+            return;
         }
 
 
-        if (evt.target.id === 'email' && !validarEmail(evt.target.value)) {// estas dos condiciones se tienen que cumplir.
+        if (evt.target.id === 'email' && !validarEmail(evt.target.value)) {
             mostrarAlerta(`El ${tipoCampo.toUpperCase()} no es valido`, evt.target.parentElement);
             email[evt.target.name] = '';
             comprobarEmail();
@@ -40,10 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         limpiarAlerta(evt.target.parentElement);
 
-        //Asignar los valores --> Si el código llega a ejecutarse hasta aqui, significa que hemos pasado las validaciones.
+        //Asignar los valores
         email[evt.target.name] = evt.target.value.trim().toLowerCase();
-        //console.log(email);
-
+       
         //Comprobar el objeto de email
 
         comprobarEmail()
