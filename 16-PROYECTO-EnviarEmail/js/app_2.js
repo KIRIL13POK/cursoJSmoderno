@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+-
+<Xdocument.addEventListener('DOMContentLoaded', function () {
     
     const email = {
         email: '',
@@ -12,13 +13,28 @@ document.addEventListener('DOMContentLoaded', function () {
         inputAsunto = document.querySelector('#asunto'),
         textAreaMensaje = document.querySelector('#mensaje'),
         formulario = document.querySelector('#formulario'),
-        btnSubmit = document.querySelector('#formulario button[type="submit"]')
+        btnSubmit = document.querySelector('#formulario button[type="submit"]'),
+        btnReset = document.querySelector('#formulario button[type="reset"]')
+        
 
 
     //Asignar eventos
     inputEmail.addEventListener('input', validar);
     inputAsunto.addEventListener('input', validar);
     textAreaMensaje.addEventListener('input', validar);
+
+    // btnReset.addEventListener('click', function(e){
+    //     e.preventDefault();
+    
+    //     // reniciar el objeto
+    //     email.email = '';
+    //     email.aunto = '';
+    //     email.mensaje = '';
+
+    //     formulario.reset();
+    //     comprobarEmail();
+
+    // })
 
     function validar(evt) {
 
