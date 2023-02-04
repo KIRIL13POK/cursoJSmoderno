@@ -44,6 +44,7 @@ marca.addEventListener('change',e => {
 });
 year.addEventListener('change',e =>{
     datosBusqueda.year = e.target.value;
+    filtrarAuto()
 });
 minimo.addEventListener('change', e =>{
     datosBusqueda.minimo= e.target.value;
@@ -94,7 +95,7 @@ function llenarSelect() {
 
 //Filtar en base a la busqueda
 function filtrarAuto(){
-    const resultado  = autos.filter(filtrarMarca);
+    const resultado  = autos.filter(filtrarMarca).filter(filtrarYear)//2-podemos filtrar primero por la marca, después por el año
     console.log(resultado);
 
 }
@@ -103,9 +104,17 @@ function filtrarMarca(auto){
     const {marca} = datosBusqueda;
     
     if(marca){
-        return auto.marca === datosBusqueda.marca;
+        return auto.marca === marca;
     }
     return auto;
 
 }
-  
+function filtrarYear(auto){//1 otra fincion para filtrar por el año
+    const {year} = datosBusqueda;
+    
+    if(year){
+        return auto.year === +year;//-->Hace falta convertir en numero, una vez que el dato esta en input se covierte en un strig (esta almacenando como string)
+    }
+    return auto;
+
+}  
