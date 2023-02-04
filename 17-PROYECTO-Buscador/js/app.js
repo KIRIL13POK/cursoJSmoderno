@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Event listener para select de búsqueda
-marca.addEventListener('change',e => {
+marca.addEventListener('change',e => {// 1- una vez que yo selecciono la marca
     datosBusqueda.marca = e.target.value;
+    filtrarAuto();//2-mandó llamar a esta función
 });
 year.addEventListener('change',e =>{
     datosBusqueda.year = e.target.value;
@@ -90,3 +91,21 @@ function llenarSelect() {
 
     }
 }
+
+//Filtar en base a la busqueda
+function filtrarAuto(){
+    const resultado  = autos.filter(filtrarMarca)// 3- filter me da esa funcionalidad y mando llamar a esta otra función filtrarMarca()
+    console.log(resultado);
+
+}
+ 
+function filtrarMarca(auto){// 4- (auto)--> vamos a ir entrando sobre cada automóvil
+    const {marca} = datosBusqueda;
+    //Si hay un valor en la búsqueda de marca, entonces filtro los que tienen esa marca y si no, me traigo todos de regreso
+    if(marca){
+        return auto.marca === datosBusqueda.marca;
+    }
+    return auto;
+
+}
+  
