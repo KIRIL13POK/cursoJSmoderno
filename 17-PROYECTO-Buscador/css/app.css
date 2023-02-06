@@ -57,6 +57,17 @@ form {
 .error {
     background-color: red;
 }
+.buen_resultado {
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: gold;
+    font-size: 2rem;
+}
+.sinError {
+    background-color: black;
+}
 
 .sitio-web  {
     color: white;

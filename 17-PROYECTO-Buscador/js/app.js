@@ -85,6 +85,7 @@ function mostrarAutos(autos) {
 
         `;
         // insertar en elHTML
+        resultado.classList.add('buen_resultado', 'sinError');
         resultado.appendChild(autoHTML);
 
     });
@@ -105,7 +106,7 @@ function llenarSelect() {
 //Limpiar HTML
 function limpiarHTML() {
 
-    while (resultado.firstChild){
+    while (resultado.firstChild) {
         resultado.removeChild(resultado.firstChild);
     }
 
@@ -113,10 +114,26 @@ function limpiarHTML() {
 
 //Filtar en base a la busqueda
 function filtrarAuto() {
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor)
-    //console.log(resultado);
-    mostrarAutos(resultado);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor);
 
+    if (resultado.length) {
+        mostrarAutos(resultado);
+
+    }else{
+        noResultado();
+    }
+
+}
+
+//Genera un DIV que va a tener un texto que va a decir que no hubo resultados.
+function noResultado(){
+
+     limpiarHTML();
+
+    const noResultado = document.createElement('DIV');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No Hay Resultdo, Intente De Nuevo Más Tarde';
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto) {
@@ -136,7 +153,7 @@ function filtrarYear(auto) {
     }
     return auto;
 
-}  
+}
 
 function filtrarMinimo(auto) {
     const { minimo } = datosBusqueda;
@@ -146,7 +163,7 @@ function filtrarMinimo(auto) {
     }
     return auto;
 
-}  
+}
 function filtrarMaximo(auto) {
     const { maximo } = datosBusqueda;
 
@@ -155,27 +172,27 @@ function filtrarMaximo(auto) {
     }
     return auto;
 
-}  
+}
 
-function filtrarPuertas(auto){
-    const{puertas} = datosBusqueda;
-    if(puertas){
+function filtrarPuertas(auto) {
+    const { puertas } = datosBusqueda;
+    if (puertas) {
         return auto.puertas === +puertas;
     }
     return auto
 }
 
-function filtrarTransmision(auto){
-    const{transmision} = datosBusqueda
-    if(transmision){
+function filtrarTransmision(auto) {
+    const { transmision } = datosBusqueda
+    if (transmision) {
         return auto.transmision === transmision;
     }
     return auto
 }
 
-function filtrarColor(auto){
-    const {color} = datosBusqueda
-    if(color){
+function filtrarColor(auto) {
+    const { color } = datosBusqueda
+    if (color) {
         return auto.color === color;
     }
     return auto
