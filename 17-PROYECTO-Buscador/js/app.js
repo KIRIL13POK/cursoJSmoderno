@@ -27,14 +27,12 @@ const datosBusqueda = {
     color: '',
 
 }
-/*
-Ya estamos filtrando tanto por marca como por año, pero no cambia nada nuestro HTML. Una vez que tengamos un resultado tenemos que volver a llamar el HTML.
-*/
+
 
 //Eventos
 document.addEventListener('DOMContentLoaded', () => {
     //Muestra los automobiles al cargar
-    mostrarAutos(autos);// Paso3  cuando se hace llamar a esa función de mostrar datos, ahora haty que pasar como el argumento-->autos
+    mostrarAutos(autos);
     //Llena las opciones del año
     llenarSelect();
 
@@ -68,11 +66,11 @@ color.addEventListener('change', e => {
 
 
 
-function mostrarAutos(autos) {//Paso2-esta función tendrá que tomar un valor(parametro)--> auto
+function mostrarAutos(autos) {
     //Elemina HTML previo
-    limpiarHTML();//Paso5
+    limpiarHTML();
 
-    autos.forEach(auto => {//*Aquí estamos haciendo referencia al arreglo principal y lo estamos recorriendo.Interesa volverlo a llamar, pero ahora con un resultado.
+    autos.forEach(auto => {
 
         const { marca, modelo, year, puertas, transmision, precio, color } = auto;
         const autoHTML = document.createElement('P');
@@ -99,11 +97,10 @@ function llenarSelect() {
 
     }
 }
-//Limpiar HTML Paso4- creamos la funccion para borrar el contenido previo Y la vamos a mandar llamar antes de recorrer e imprimir el HTML.
+//Limpiar HTML
 function limpiarHTML() {
-    //*Vamos a limpiar el resulatdo
 
-    while (resultado.firstChild)/*mientras haya algo*/{
+    while (resultado.firstChild){
         resultado.removeChild(resultado.firstChild);
     }
 
@@ -113,7 +110,7 @@ function limpiarHTML() {
 function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
     //console.log(resultado);
-    mostrarAutos(resultado);// Paso1-LLamamos la funcion pasando el resultado de estos filtros como argumento
+    mostrarAutos(resultado);
 
 }
 
