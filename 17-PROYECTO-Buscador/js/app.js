@@ -95,7 +95,7 @@ function llenarSelect() {
 
 //Filtar en base a la busqueda
 function filtrarAuto(){
-    const resultado  = autos.filter(filtrarMarca).filter(filtrarYear)//2-podemos filtrar primero por la marca, después por el año
+    const resultado  = autos.filter(filtrarMarca).filter(filtrarYear) 
     console.log(resultado);
 
 }
@@ -109,11 +109,11 @@ function filtrarMarca(auto){
     return auto;
 
 }
-function filtrarYear(auto){//1 otra fincion para filtrar por el año
+function filtrarYear(auto){
     const {year} = datosBusqueda;
     
     if(year){
-        return auto.year === +year;//-->Hace falta convertir en numero, una vez que el dato esta en input se covierte en un strig (esta almacenando como string)
+        return auto.year === +year;
     }
     return auto;
 
