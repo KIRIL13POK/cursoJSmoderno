@@ -5,16 +5,17 @@ let tweets = [];
 
 
 
-//Eventos
+/*<--\\----------****EVENTOS*****-----------//-> */
+
 eventEventListeners();
 
 function eventEventListeners(){
     formulario.addEventListener('submit', agregarTweet);
 }
 
+/*<--\\----------****FUNCIONES*****-----------//-> */
 
-
-//Funciones
+//Agregar Tweet -->
 function agregarTweet(e){
     e.preventDefault();
 
@@ -23,16 +24,15 @@ function agregarTweet(e){
 
     //Validacion
     if(tweet ===''){
-        mostrarError('No puede ir vacio');
-        return;// evita de se ejecuta más lineas de codigo
-
+        mostrarError('El mensaje NO puede ir vacio');
+        return;
     }
 
     console.log('agregando tweet');
     console.log(tweet);
 }
 
-//Mostrar mensaje de error
+//Mostrar mensaje de error -->
 function mostrarError(error) {
     const mensajeError = document.createElement('P');
     mensajeError.textContent = error;
@@ -42,7 +42,7 @@ function mostrarError(error) {
     const contenido = document.querySelector('#contenido');
     contenido.appendChild(mensajeError);
 
-    //Elimina la alerta despues de 3 segundos
+    //Elimina la alerta despues de 3 segundos-->
     setTimeout(() => {
         mensajeError.remove();
 
