@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded',() => {
 eventListeners();
 function eventListeners(){
     const formulario = document.querySelector('#cotizar-seguro');
-    formulario.addEventListener('submit',cotizarSeguro);//-->Cuando se envía el formulario, se ejecutará la función cotizarSeguro
+    formulario.addEventListener('submit',cotizarSeguro);
 }
 
 function cotizarSeguro(e){
-    e.preventDefault();//--> es un método que detiene el comportamiento por defecto de un evento. Por ejemplo, si un formulario se envía con un evento de submit, el navegador normalmente recargará la página y enviará los datos del formulario al servidor. Si se llama a preventDefault en el controlador de eventos del submit, se evitará la acción por defecto y los datos del formulario no se enviarán.
+    e.preventDefault();
 
     //Leer la marca slecionada
     const marca = document.querySelector('#marca').value;
@@ -53,11 +53,10 @@ function cotizarSeguro(e){
     //Leer el tipo de cobertura
     const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
-   //Este es un bloque if que verifica si alguna de las variables marca, year o tipo está vacía -->
     if(marca === '' || year === '' || tipo === ''){
-        console.log('No paso la validacion');
+        
     }else{
-        console.log('Exelente, todo correcto');
+        
     }
     
 }
