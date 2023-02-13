@@ -1,4 +1,3 @@
-//En JavaScript, un constructor es una función especial que se utiliza para crear objetos de una determinada clase o tipo.
 
 //Constructores==>
 
@@ -12,8 +11,6 @@ function Seguro (marca,year, tipo){
 function UI() {}
 console.log(UI)
 
-
-//Un nuevo prtotype ==>
 //Llena las opciones de los años
 UI.prototype.llenarOpciones = () => {
     const max = new Date().getFullYear(),
@@ -29,11 +26,8 @@ UI.prototype.llenarOpciones = () => {
     }
 }
 
-
-
-
 //Instaciar UI
-//Cuando se llama a un constructor con la palabra clave "new", se crea un nuevo objeto que hereda las propiedades y métodos definidos en la función constructor ==>
+
 const ui = new UI();
 
 document.addEventListener('DOMContentLoaded',() => {
