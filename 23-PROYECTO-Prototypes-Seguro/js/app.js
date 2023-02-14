@@ -10,11 +10,7 @@ function Seguro(marca, year, tipo) {
 
 //Realiza la cotización con los datos
 Seguro.prototype.cotizarSeguro = function () {
-    /* La función cotiza un seguro de automóvil basándose en la marca del vehículo:
-    1 = Americano 1.15
-    2 = Asiatico 1.05
-    3 = Europeo 1.35
-    */
+    
     let cantidad;
     const base = 2000;
 
@@ -32,17 +28,11 @@ Seguro.prototype.cotizarSeguro = function () {
             break;
     }
 
-    //Leer el año
+    //Leer el año -->
     const diferencia = new Date().getFullYear()- this.year;
-
-    //Se calcula la diferencia en años entre el año actual y el año del automóvil y se reduce el costo en un 3% por cada año.
+    //Se reduce el costo en un 3% por cada año -->  
     cantidad -= ((diferencia * 3) * cantidad) / 100;
-
-    /*
-    Si el seguro es basico se multiplica 30% más
-    Si el seguro es completo se multiplica 50% más
-    */
-
+    //Calculo de tipo seguro -->
     if(this.tipo === 'basico'){
         cantidad *= 1.30;
     }else{
@@ -51,7 +41,7 @@ Seguro.prototype.cotizarSeguro = function () {
     }
     
     return cantidad;
-    // El método cotizarSeguro se agrega al prototipo del objeto Seguro, lo que significa que cualquier instancia de Seguro tendrá acceso a este método.
+    
 
 }
 
