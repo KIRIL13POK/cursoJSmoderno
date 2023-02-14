@@ -10,7 +10,7 @@ function Seguro(marca, year, tipo) {
 
 //Realiza la cotización con los datos
 Seguro.prototype.cotizarSeguro = function () {
-    
+
     let cantidad;
     const base = 2000;
 
@@ -29,19 +29,19 @@ Seguro.prototype.cotizarSeguro = function () {
     }
 
     //Leer el año -->
-    const diferencia = new Date().getFullYear()- this.year;
+    const diferencia = new Date().getFullYear() - this.year;
     //Se reduce el costo en un 3% por cada año -->  
     cantidad -= ((diferencia * 3) * cantidad) / 100;
     //Calculo de tipo seguro -->
-    if(this.tipo === 'basico'){
+    if (this.tipo === 'basico') {
         cantidad *= 1.30;
-    }else{
+    } else {
         cantidad *= 1.50;
 
     }
-    
+
     return cantidad;
-    
+
 
 }
 
@@ -89,6 +89,55 @@ UI.prototype.mostrarMensaje = (mensaje, tipo) => {
 
 }
 
+UI.prototype.mostrarResultado = (total, seguro) => {
+
+    const { marca, year, tipo } = seguro;
+    let textoMarca;
+
+    switch (marca) {
+        case '1':
+            textoMarca = 'Americano'
+            break;
+        case '2':
+            textoMarca = 'Asiatico'
+            break;
+        case '3':
+            textoMarca = 'Europeo'
+            break;
+        default:
+            break;
+    }
+
+
+    //Crear el resultado ==>
+    const div = document.createElement('DIV');
+    div.classList.add('mt-10');
+
+    div.innerHTML = `
+    <p class = "header">Tu Resumen </p>
+    <p class = "font-bold">  Marca: <spam class="font-normal" > ${textoMarca}. </spam> </p>
+    <p class = "font-bold">  Año: <spam class="font-normal" > ${year} </spam> </p>
+    <p class = "font-bold">  Tipo Seguro: <spam class="font-normal capitalize" > ${tipo} </spam> </p>
+    <p class = "font-bold">  Total: <spam class="font-normal" > ${total} </spam> </p>
+    
+    `;
+
+    const resultadoDiv = document.querySelector('#resultado');
+
+
+    //Mostrar el espiner ==>
+    const spiner = document.querySelector('#cargando');
+    spiner.style.display = 'block';
+
+    // Para limpiar este spiner ==>
+    setTimeout(() => {
+        spiner.style.display = 'none';//se borra
+        resultadoDiv.appendChild(div);//se muestra a continación
+    }, 3000);
+
+
+}
+
 
 //Instanciar UI
 
@@ -125,13 +174,21 @@ function cotizarSeguro(e) {
 
     ui.mostrarMensaje('Todo Correcto', 'correcto');
 
+    //Ocultar las cotizaciones previas
+    const resultados = document.querySelector('#resultado div');
+    if (resultados != null) {
+        resultados.remove();
+
+    }
+
+
+
+
     //Instanciar el seguro
     const seguro = new Seguro(marca, year, tipo);
-    seguro.cotizarSeguro();
-
-
-
+    const total = seguro.cotizarSeguro();
 
     //Ultilizar el prototype que va a cotizar
+    ui.mostrarResultado(total, seguro);
 
 }
